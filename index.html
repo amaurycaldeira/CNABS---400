@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção de Linha CNAB 400</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 70%;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Correção de Linha CNAB 400</h1>
+        <form method="POST">
+            <label for="linha_usuario">Cole a linha CNAB 400 (400 caracteres):</label>
+            <textarea name="linha_usuario" id="linha_usuario" rows="4"></textarea>
+
+            <label for="identificacao_titulo">Identificação do Título (Posição 71-82):</label>
+            <input type="text" name="identificacao_titulo" id="identificacao_titulo" maxlength="12">
+
+            <label for="identificacao_ocorrencia">Identificação da Ocorrência (Posição 109-110):</label>
+            <input type="text" name="identificacao_ocorrencia" id="identificacao_ocorrencia" maxlength="2">
+
+            <label for="data_vencimento">Data de Vencimento (Posição 147-152):</label>
+            <input type="text" name="data_vencimento" id="data_vencimento" maxlength="6">
+
+            <label for="valor_titulo">Valor do Título (Posição 153-165):</label>
+            <input type="text" name="valor_titulo" id="valor_titulo" maxlength="13">
+
+            <label for="valor_pago">Valor Pago (Posição 254-266):</label>
+            <input type="text" name="valor_pago" id="valor_pago" maxlength="13">
+
+            <label for="data_pagamento">Data do Pagamento (Posição 296-301):</label>
+            <input type="text" name="data_pagamento" id="data_pagamento" maxlength="6">
+
+            <label for="coluna_medicao">Coluna de Medição (Posição 396-401):</label>
+            <input type="text" name="coluna_medicao" id="coluna_medicao" maxlength="6">
+
+            <button type="submit">Gerar Linha CNAB 400 Corrigida</button>
+        </form>
+
+        {% if mensagem %}
+            <p class="error">{{ mensagem }}</p>
+        {% endif %}
+
+        {% if linha_corrigida %}
+            <h3>Linha CNAB 400 Corrigida:</h3>
+            <textarea readonly rows="4">{{ linha_corrigida }}</textarea>
+        {% endif %}
+    </div>
+</body>
+</html>
